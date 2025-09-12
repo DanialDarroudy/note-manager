@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.sp
 import com.example.simplenote.core.ui.purpleColor
 import com.example.simplenote.ui.home.activity.HomeActivity
 import com.example.simplenote.ui.login.activity.LoginActivity
-import com.example.simplenote.ui.login.viewmodel.LoginNavigationEvent
 import com.example.simplenote.ui.register.viewmodel.RegisterNavigationEvent
 import com.example.simplenote.ui.register.viewmodel.RegisterViewModel
 

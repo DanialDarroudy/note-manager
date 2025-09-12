@@ -1,10 +1,12 @@
 package com.example.simplenote.modules.note.common.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.*
+import kotlinx.android.parcel.Parcelize
 import kotlinx.serialization.Serializable
-import java.util.Date
 
 @Serializable
+@Parcelize
 data class Note(
     val id: Long,
     val title: String,
@@ -13,4 +15,4 @@ data class Note(
     @SerializedName("updated_at") val updatedAt: String,
     @SerializedName("creator_name") val creatorName: String?,
     @SerializedName("creator_username") val creatorUserName: String?
-)
+): Parcelable

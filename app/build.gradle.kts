@@ -3,7 +3,9 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    id("kotlin-parcelize")
     kotlin("kapt")
+
 }
 
 android {
@@ -94,4 +96,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.logging.interceptor)
     kapt(libs.androidx.room.compiler.v261)
+    implementation(libs.androidx.material3.v121)
 }

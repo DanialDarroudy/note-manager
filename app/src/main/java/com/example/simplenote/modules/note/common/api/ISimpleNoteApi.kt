@@ -15,10 +15,10 @@ interface ISimpleNoteApi {
     @POST("/api/notes/")
     suspend fun createNote(@Body createNoteRequestDto: CreateNoteRequestDto): Response<Note>
 
-    @POST("/api/notes/bulk/")
-    suspend fun createBulkNote(@Body createBulkNoteRequestDto: CreateBulkNoteRequestDto): Response<CreateBulkNoteResponseDto>
+    @POST("/api/notes/bulk")
+    suspend fun createBulkNote(@Body createNoteRequestDtos: List<CreateNoteRequestDto>): Response<List<Note>>
 
-    @POST("/api/notes/{id}/")
+    @PUT("/api/notes/{id}/")
     suspend fun updateNote(@Path("id") id: Long, @Body updateNoteRequestDto: UpdateNoteRequestDto): Response<Note>
 
     @GET("/api/notes/{id}/")
@@ -29,12 +29,4 @@ interface ISimpleNoteApi {
 
     @GET("/api/notes")
     suspend fun getNoteList(@Query("page") page: Int?, @Query("page_size") pageSize: Int?): Response<Notes>
-
-    @GET("/api/notes/filter")
-    suspend fun getFilteredNoteList(
-        @Query("description") description: String?,
-        @Query("page") page: Int,
-        @Query("page_size") pageSize: Int,
-        @Query("title") title: String?
-    ): Response<Notes>
 }

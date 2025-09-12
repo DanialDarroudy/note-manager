@@ -16,10 +16,8 @@ import com.example.simplenote.modules.authentication.token.renewtoken.abstractio
 import com.example.simplenote.modules.authentication.token.renewtoken.business.TokenRenewer
 import com.example.simplenote.modules.authentication.user.getuser.abstraction.IUserGetter
 import com.example.simplenote.modules.authentication.user.getuser.business.UserGetter
-import com.example.simplenote.modules.note.common.pagination.abstraction.IPaginationService
 import com.example.simplenote.modules.note.common.api.ISimpleNoteApi
 import com.example.simplenote.modules.note.common.synchronization.master.abstraction.IDatabaseSynchronizer
-import com.example.simplenote.modules.note.common.pagination.business.PaginationService
 import com.example.simplenote.modules.note.common.database.abstraction.INoteDataAccessObject
 import com.example.simplenote.modules.note.common.synchronization.master.business.DatabaseSynchronizer
 import com.example.simplenote.modules.note.common.synchronization.pull.abstraction.IPuller
@@ -38,8 +36,6 @@ import com.example.simplenote.modules.note.createbulk.abstraction.IBulkNoteCreat
 import com.example.simplenote.modules.note.createbulk.business.BulkNoteCreator
 import com.example.simplenote.modules.note.destroy.abstraction.INoteDestroyer
 import com.example.simplenote.modules.note.destroy.business.NoteDestroyer
-import com.example.simplenote.modules.note.getfilteredlist.abstraction.IFilteredNoteListGetter
-import com.example.simplenote.modules.note.getfilteredlist.business.FilteredNoteListGetter
 import com.example.simplenote.modules.note.getlist.abstraction.INoteListGetter
 import com.example.simplenote.modules.note.getlist.business.NoteListGetter
 import com.example.simplenote.modules.note.retrieve.abstraction.INoteRetriever
@@ -110,10 +106,6 @@ object DependencyProvider {
         NoteDestroyer()
     }
 
-    val filteredNoteListGetter: IFilteredNoteListGetter by lazy {
-        FilteredNoteListGetter()
-    }
-
     val noteListGetter: INoteListGetter by lazy {
         NoteListGetter()
     }
@@ -128,9 +120,6 @@ object DependencyProvider {
 
     val networkService: INetworkService by lazy {
         NetworkService()
-    }
-    val paginationService: IPaginationService by lazy {
-        PaginationService()
     }
 
     val userCreator: IUserCreator by lazy {

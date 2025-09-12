@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -28,6 +29,7 @@
         <activity android:name=".ui.home.activity.HomeActivity" />
         <activity android:name=".ui.settings.activity.SettingsActivity" />
         <activity android:name=".ui.note.activity.NoteActivity" />
+        <activity android:name=".ui.search.activity.SearchActivity" />
     </application>
 
 </manifest>

@@ -10,5 +10,4 @@ data class GetUserResponseDto(
     val email: String,
     @SerializedName("first_name") val firstName: String,
     @SerializedName("last_name") val lastName: String
-
 )

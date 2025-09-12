@@ -11,6 +11,7 @@ import com.example.simplenote.modules.note.common.api.ISimpleNoteApi
 import com.example.simplenote.modules.note.createbulk.abstraction.IBulkNoteCreator
 import com.example.simplenote.modules.note.createbulk.dto.request.CreateBulkNoteRequestDto
 import com.example.simplenote.modules.note.createbulk.dto.response.CreateBulkNoteResponse
+import com.example.simplenote.modules.note.createbulk.dto.response.CreateBulkNoteResponseDto
 import kotlinx.serialization.json.Json
 
 class BulkNoteCreator: IBulkNoteCreator {
@@ -18,10 +19,10 @@ class BulkNoteCreator: IBulkNoteCreator {
     private val tokenRenewer: ITokenRenewer = DependencyProvider.tokenRenewer
 
     override suspend fun createBulkNote(createBulkNoteRequestDto: CreateBulkNoteRequestDto, context: Context): CreateBulkNoteResponse {
-        val response = simpleNoteApi.createBulkNote(createBulkNoteRequestDto)
+        val response = simpleNoteApi.createBulkNote(createBulkNoteRequestDto.requests)
         if (response.isSuccessful){
             val responseDto = response.body()!!
-            return CreateBulkNoteResponse.Success(responseDto)
+            return CreateBulkNoteResponse.Success(CreateBulkNoteResponseDto(responseDto))
         }
         else if (response.code() == 401){
             return refreshToken(createBulkNoteRequestDto, context)
