@@ -98,6 +98,7 @@ class HomeActivity : ComponentActivity() {
 
             HomeScreen(
                 notes = notes,
+                viewModel.totalNotesCount,
                 isLoading = isLoading,
                 errorMessage = errorMessage,
                 onLoadMore = { viewModel.loadNextPage() },
@@ -111,6 +112,7 @@ class HomeActivity : ComponentActivity() {
     @Composable
     fun HomeScreen(
         notes: List<Note>,
+        totalCount: Int,
         isLoading: Boolean,
         errorMessage: String?,
         onLoadMore: () -> Unit,
@@ -120,7 +122,7 @@ class HomeActivity : ComponentActivity() {
     ) {
         val listState = rememberLazyListState()
 
-        val shouldLoadMore by remember {
+        val shouldLoadMore by remember(listState, notes) {
             derivedStateOf {
                 val lastVisible = listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index ?: 0
                 val total = listState.layoutInfo.totalItemsCount
@@ -134,7 +136,7 @@ class HomeActivity : ComponentActivity() {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text("Home - ${notes.size} Notes") },
+                    title = { Text("Home - $totalCount Notes") },
                     actions = {
                         IconButton(onClick = onSearchClick) {
                             Icon(Icons.Default.Search, contentDescription = "Search")

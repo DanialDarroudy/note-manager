@@ -16,6 +16,7 @@ class HomeViewModel : ViewModel() {
     private val _navigationEvent = MutableStateFlow<HomeNavigationEvent>(HomeNavigationEvent.None)
     val navigationEvent: StateFlow<HomeNavigationEvent> get() = _navigationEvent
     private val _allNotes = mutableListOf<Note>()
+    val totalNotesCount: Int get() = _allNotes.size
     private val _visibleNotes = MutableStateFlow<List<Note>>(emptyList())
     val visibleNotes: StateFlow<List<Note>> get() = _visibleNotes
     private val _isLoading = MutableStateFlow(false)

@@ -20,13 +20,13 @@ class Puller: IPuller {
 
     override suspend fun pullAllNotesFromServer(context: Context): ExceptionIncludedResponse? {
         noteDataAccessObject.deleteAllNotes()
-        val allNotesResponse = simpleNoteApi.getNoteList(null, null)
+        val allNotesResponse = simpleNoteApi.getNoteList(1, 1000)
         if (allNotesResponse.code() == 401){
             val renewResponse = tokenRenewer.renewToken(RenewTokenRequestDto(ConstantProvider.refreshToken), context)
             if (renewResponse is RenewTokenResponse.Failure) {
                 return renewResponse.exception
             }
-            val allNotesResponse = simpleNoteApi.getNoteList(null, null)
+            val allNotesResponse = simpleNoteApi.getNoteList(1, 1000)
             if (!allNotesResponse.isSuccessful){
                 return Json.Default.decodeFromString<ExceptionIncludedResponse>(allNotesResponse.errorBody()?.string()!!)
             }

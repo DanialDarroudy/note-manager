@@ -48,7 +48,6 @@ class StartActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            DependencyProvider.init(LocalContext.current)
             val navigateToLogin by viewModel.navigateToLogin.collectAsState()
             LaunchedEffect(navigateToLogin) {
                 if (navigateToLogin) {

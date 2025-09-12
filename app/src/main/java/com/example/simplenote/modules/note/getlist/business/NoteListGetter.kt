@@ -41,7 +41,7 @@ class NoteListGetter : INoteListGetter {
     }
 
     private suspend fun getNoteListOnServer(context: Context): GetNoteListResponse {
-        val response = simpleNoteApi.getNoteList(null, null)
+        val response = simpleNoteApi.getNoteList(1, 1000)
         if (response.isSuccessful) {
             val notes = response.body()!!
             return GetNoteListResponse.Success(GetNoteListResponseDto(notes.notes))
